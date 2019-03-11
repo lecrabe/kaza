@@ -44,6 +44,10 @@ rootdir  <- paste0(getwd(),"/")
 username <- unlist(strsplit(rootdir,"/"))[3]
 
 scriptdir <- paste0(rootdir,"scripts/")
+doc_dir   <- paste0(rootdir,"docs/")
 data_dir  <- paste0(rootdir,"data/")
 aoi_dir   <- paste0(rootdir,"data/aoi/")
 tile_dir  <- paste0(rootdir,"data/tiling/")
+
+dir.create(tile_dir,showWarnings = F)
+
