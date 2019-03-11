@@ -22,9 +22,9 @@ packages <- function(x){
 ### Install (if necessary) two missing packages in your local SEPAL environment
 packages(Hmisc)
 packages(lubridate)
-packages(devtools)
-install_github('yfinegold/gfcanalysis')
-packages(gfcanalysis)
+#packages(devtools)
+#install_github('yfinegold/gfcanalysis')
+#packages(gfcanalysis)
 
 ### Load necessary packages
 packages(raster)
@@ -32,8 +32,8 @@ packages(rgeos)
 packages(rgdal)
 
 ## Set download directory
-gfcstore_dir  <- "~/downloads/gfc_2017/"
-dir.create(gfcstore_dir,showWarnings = F)
+# gfcstore_dir  <- "~/downloads/gfc_2017/"
+# dir.create(gfcstore_dir,showWarnings = F)
 
 ## Set the working directory
 rootdir       <- "~/kaza/"
@@ -44,13 +44,6 @@ rootdir  <- paste0(getwd(),"/")
 username <- unlist(strsplit(rootdir,"/"))[3]
 
 scriptdir <- paste0(rootdir,"scripts/")
-doc_dir   <- paste0(rootdir,"docs/")
 data_dir  <- paste0(rootdir,"data/")
 aoi_dir   <- paste0(rootdir,"data/aoi/")
-
-gadm_dir  <- paste0(rootdir,"data/gadm/")
 tile_dir  <- paste0(rootdir,"data/tiling/")
-
-dir.create(gadm_dir,showWarnings = F)
-dir.create(tile_dir,showWarnings = F)
-
