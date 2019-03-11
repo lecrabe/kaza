@@ -1,6 +1,6 @@
 ## Prepare BFAST data for the KAVANGO ZAMBEZI 
 
-Repository set to run under https://sepal.io
+Repository set to run in R under https://sepal.io
 
 The scripts produce a regular tiling system over the area of interest
 

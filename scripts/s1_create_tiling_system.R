@@ -12,25 +12,7 @@ aoi <- readOGR(paste0(aoi_dir,"kaza_2017_aeac.shp"))
 ### What grid size do we need ? 
 grid_size <- 20000          ## in meters
 
-generate_grid <- function(aoi,size){
-### Create a set of regular SpatialPoints on the extent of the created polygons  
-sqr <- SpatialPoints(makegrid(aoi,offset=c(0.5,0.5),cellsize = size))
-
-### Convert points to a square grid
-grid <- points2grid(sqr)
-
-### Convert the grid to SpatialPolygonDataFrame
-SpP_grd <- as.SpatialPolygons.GridTopology(grid)
-
-sqr_df <- SpatialPolygonsDataFrame(Sr=SpP_grd,
-                                   data=data.frame(rep(1,length(SpP_grd))),
-                                   match.ID=F)
-
-### Assign the right projection
-proj4string(sqr_df) <- proj4string(aoi)
-sqr_df
-}
-
+### GENERATE A GRID
 sqr_df <- generate_grid(aoi,grid_size)
 
 nrow(sqr_df)

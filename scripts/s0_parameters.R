@@ -51,3 +51,23 @@ tile_dir  <- paste0(rootdir,"data/tiling/")
 
 dir.create(tile_dir,showWarnings = F)
 
+
+############ CREATE A FUNCTION TO GENERATE REGULAR GRIDS
+generate_grid <- function(aoi,size){
+  ### Create a set of regular SpatialPoints on the extent of the created polygons  
+  sqr <- SpatialPoints(makegrid(aoi,offset=c(0.5,0.5),cellsize = size))
+  
+  ### Convert points to a square grid
+  grid <- points2grid(sqr)
+  
+  ### Convert the grid to SpatialPolygonDataFrame
+  SpP_grd <- as.SpatialPolygons.GridTopology(grid)
+  
+  sqr_df <- SpatialPolygonsDataFrame(Sr=SpP_grd,
+                                     data=data.frame(rep(1,length(SpP_grd))),
+                                     match.ID=F)
+    ### Assign the right projection
+  proj4string(sqr_df) <- proj4string(aoi)
+  sqr_df
+}
+
