@@ -10,7 +10,7 @@
 aoi <- readOGR(paste0(aoi_dir,"kaza_2017_aeac.shp"))
 
 ### What grid size do we need ? 
-grid_size <- 20000          ## in meters
+grid_size <- 150000          ## in meters
 
 ### GENERATE A GRID
 sqr_df <- generate_grid(aoi,grid_size)
@@ -22,21 +22,26 @@ nrow(sqr_df)
 sqr_df_selected <- sqr_df[aoi,]
 nrow(sqr_df_selected)
 
-### Plot the results
-plot(sqr_df_selected)
-plot(aoi,add=T,border="blue")
-
 ### Give the output a decent name, with unique ID
 names(sqr_df_selected@data) <- "tileID" 
 sqr_df_selected@data$tileID <- row(sqr_df_selected@data)[,1]
 
+### Reproject in LAT LON
+tiles   <- spTransform(sqr_df_selected,CRS("+init=epsg:4326"))
+aoi_geo <- spTransform(aoi,CRS("+init=epsg:4326"))
+
+
+### Plot the results
+plot(tiles)
+plot(aoi_geo,add=T,border="blue")
+
 
 ### Export X random tiles TILE as KML
-x <- 5
-ex_tile <- sqr_df_selected[sample(1:nrow(sqr_df_selected@data),1)+seq(1,x,1),]
+x <- 1
+ex_tile <- tiles[sample(1:nrow(tiles@data),1)+seq(1,x,1),]
 plot(ex_tile,add=T,col="red")
 
-export_name <- paste0("ex_",x,"tiles_")
+export_name <- paste0("ex_",x,"tiles")
 writeOGR(obj=   ex_tile,
          dsn=   paste(tile_dir,export_name,".kml",sep=""),
          layer= export_name,
@@ -45,7 +50,7 @@ writeOGR(obj=   ex_tile,
 
 ##############################################################################
 ### CONVERT TO A FUSION TABLE
-### For example:    1tHlR85UF9sos9iuSCgD8FLiDaN07abQPn7uZazfh
+### For example:    18vyDGQEYPGJgT_oXmTfATGsxW8_9xWkpOMdUBWfi
 ##############################################################################
 
 ### Export ALL TILES as KML

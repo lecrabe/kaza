@@ -7,6 +7,12 @@
 ####################################################################################################
 ####################################################################################################
 
+### Read the list of usernames
+users     <- c('felipe')
+tile_size <- 100
+nbatchmax <- 10
+
+
 ### Read all external files with TEXT as TEXT
 options(stringsAsFactors = FALSE)
 
