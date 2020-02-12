@@ -36,7 +36,7 @@ packages(lubridate)
 packages(raster)
 packages(rgeos)
 packages(rgdal)
-
+packages(dplyr)
 ## Set download directory
 # gfcstore_dir  <- "~/downloads/gfc_2017/"
 # dir.create(gfcstore_dir,showWarnings = F)
