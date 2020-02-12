@@ -9,7 +9,7 @@
 
 ### Read the list of usernames
 users     <- c('felipe')
-tile_size <- 100
+tile_size <- 40
 nbatchmax <- 10
 
 
